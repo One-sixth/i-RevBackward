@@ -11,11 +11,11 @@ This method saves a lot of video memory and allows me to train larger models.
 # How to test
 I used the cifar10 dataset for testing.  
 
-1. git clone me  
-2. run `python3 train_on_cifar10_with_rev_backward.py`  
+1. Download this repository 
+2. Run `python3 train_on_cifar10_with_rev_backward.py`  
 3. Use nvidia-smi to observe how much video memory is used for training.  
 4. Kill the program.  
-5. run `python3 train_on_cifar10_without_rev_backward.py`  
+5. Run `python3 train_on_cifar10_without_rev_backward.py`  
 6. Check the VRAM usage again.  
 7. Not surprisingly, the second VRAM occupies about twice as much as the first.  
 
