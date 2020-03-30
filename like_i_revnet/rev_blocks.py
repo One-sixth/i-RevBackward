@@ -120,3 +120,17 @@ class RevSequential(nn.ModuleList):
         for m in self[::-1]:
             x1, x2 = m.invert(x1, x2)
         return x1, x2
+
+
+class RevGroupBlock(RevSequential):
+    '''
+    当前只支持输入通道等于输出通道，并且不允许下采样
+    '''
+    def __init__(self, in_ch, out_ch, stride, act, block_type, blocks, **kwargs):
+        assert in_ch == out_ch
+        assert stride == 1
+        mods = []
+        for _ in range(blocks):
+            mods.append(block_type(in_ch=in_ch, out_ch=out_ch, stride=1, act=act, **kwargs))
+        # self.extend(mods)
+        super().__init__(mods)
