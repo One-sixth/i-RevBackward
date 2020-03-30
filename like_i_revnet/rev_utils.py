@@ -85,7 +85,7 @@ class RevSequentialBackwardFunction(torch.autograd.Function):
 
         with torch.no_grad():
             # Start from the last module
-            for m in ctx.rev_block_stack[::-1]:
+            for m in list(ctx.rev_block_stack)[::-1]:
 
                 if ctx.preserve_rng_state:
                     # Restore rng state
