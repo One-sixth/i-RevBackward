@@ -103,12 +103,13 @@ class RevSequentialBackwardFunction(torch.autograd.Function):
                         # Restore input from output
                         inputs = m.invert(*bak_outputs)
                     # Detach variables from graph
-                    inputs = [t.detach() for t in inputs]
+                    # Fix some problem in pytorch1.6
+                    inputs = [t.detach().clone() for t in inputs]
                     # You need to set requires_grad to True to differentiate the input.
                     # The derivative is the input of the next backpass function.
                     # This is how grad_output comes.
                     for inp in inputs:
-                        inp.requires_grad_(True)
+                        inp.requires_grad = True
                     # run backward for each sub-module
                     with torch.enable_grad():
                         # Restore rng state again
@@ -131,12 +132,13 @@ class RevSequentialBackwardFunction(torch.autograd.Function):
                     # Restore input from output
                     inputs = m.invert(*bak_outputs)
                     # Detach variables from graph
-                    inputs = [t.detach() for t in inputs]
+                    # Fix some problem in pytorch1.6
+                    inputs = [t.detach().clone() for t in inputs]
                     for inp in inputs:
                         inp.requires_grad = True
                     # backward for each local and small graph
                     with torch.enable_grad():
-                        outputs = m.forward(*inputs)
+                        outputs = m(*inputs)
                     if isinstance(outputs, torch.Tensor):
                         outputs = (outputs,)
                     torch.autograd.backward(outputs, grad_output)
