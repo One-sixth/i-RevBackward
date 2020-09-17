@@ -8,7 +8,7 @@ i-revnet is a very surprising method.
 This method saves a lot of video memory and allows me to train larger models.  
 
 # Dependent
-Currently I have only tested it in pytorch_v1.3.1 pytorch_v1.5.1 pytorch_v1.6.  
+Currently I have tested it in pytorch_v1.3.1 pytorch_v1.5.1 pytorch_v1.6.  
 
 # How it works
 TODO: Write when I have time...
