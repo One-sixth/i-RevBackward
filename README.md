@@ -11,8 +11,19 @@ This method saves a lot of video memory and allows me to train larger models.
 Currently I have tested it in pytorch_v1.3.1 pytorch_v1.5.1 pytorch_v1.6.  
 
 # How it works
-TODO: Write when I have time...
+i-rev reversible method.  
 
+```
+On forward.
+input x1, x2
+y = x1 + F(x2)
+output y, x2
+
+On invert.
+input y，x2
+x1 = y - F(x2)
+output x1, x2
+```
 
 # How to test
 I used the cifar10 dataset for testing.  
