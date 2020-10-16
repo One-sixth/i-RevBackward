@@ -1,4 +1,4 @@
-# like_i_revnet_pytorch
+# i-RevBackward
 
 This is a model similar to irevnet and follows the same principle as irevnet.  
 
