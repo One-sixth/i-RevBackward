@@ -117,7 +117,7 @@ class RevSequential(nn.ModuleList):
 
     def invert(self, y1, y2):
         x1, x2 = y1, y2
-        for m in self[::-1]:
+        for m in list(self)[::-1]:
             x1, x2 = m.invert(x1, x2)
         return x1, x2
 
